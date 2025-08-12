@@ -9,13 +9,6 @@ final class InspirationViewModel: ObservableObject {
     @Published private(set) var technologies: [FavoriteEggTechnologyModel] = []
     @Published private(set) var isLoading = true
     
-    init() {
-        Task { [weak self] in
-            guard let self else { return }
-            await self.load()
-        }
-    }
-    
     @RealmActor
     func changeFavoriteStatusOfSelectedModel() async {
         guard let id = selectedEggTechnologyModel?.id,
@@ -38,7 +31,7 @@ final class InspirationViewModel: ObservableObject {
     }
     
     @RealmActor
-    private func load() async {
+    func load() async {
         let technologies: [FavoriteEggTechnologyObject] = await self.realmService.fetchAllObjects()
         let models = technologies.map { FavoriteEggTechnologyModel(from: $0) }
         

@@ -6,38 +6,40 @@ struct TabBarView: View {
     @State private var isSHowTabBar = true
     
     var body: some View {
-        ZStack {
-            Image(.Images.background)
-                .expandToFill()
-            
-            VStack(spacing: 0) {
-                TabView(selection: $selection) {
-                    InspirationView(isShowTabBar: $isSHowTabBar)
-                        .tag(TabViewState.inspiration)
-                    
-                    CollectionView(isShowTabBar: $isSHowTabBar)
-                        .tag(TabViewState.collection)
-                    
-                    Text("erudite")
-                        .tag(TabViewState.erudite)
-                    
-                    Text("settings")
-                        .tag(TabViewState.settings)
+        NavigationView {
+            ZStack {
+                Image(.Images.background)
+                    .expandToFill()
+                
+                VStack(spacing: 0) {
+                    TabView(selection: $selection) {
+                        InspirationView(isShowTabBar: $isSHowTabBar)
+                            .tag(TabViewState.inspiration)
+                        
+                        CollectionView(isShowTabBar: $isSHowTabBar)
+                            .tag(TabViewState.collection)
+                        
+                        EruditeView()
+                            .tag(TabViewState.erudite)
+                        
+                        SettingsView()
+                            .tag(TabViewState.settings)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .background(Color.clear)
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .background(Color.clear)
-            }
-            
-            VStack {
-                if isSHowTabBar {
-                    CustomTabBarView(selectedState: $selection)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                
+                VStack {
+                    if isSHowTabBar {
+                        CustomTabBarView(selectedState: $selection)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
                 }
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .animation(.smooth, value: isSHowTabBar)
             }
-            .frame(maxHeight: .infinity, alignment: .bottom)
-            .animation(.smooth, value: isSHowTabBar)
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
 

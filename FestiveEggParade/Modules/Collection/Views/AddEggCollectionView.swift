@@ -39,8 +39,8 @@ struct AddEggCollectionView: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(.top, 28)
-                
             }
+            .keyboardAdaptive()
             
             VStack {
                 if isShowDatePicker {
@@ -153,14 +153,18 @@ struct AddEggCollectionView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(LinearGradient.baseGradient)
             
-            LazyVGrid(
-                columns: Array(repeating: GridItem(spacing: 7), count: 2),
-                alignment: .leading,
-                spacing: 7) {
-                    ForEach(EggMark.allCases) { mark in
-                        AddEggMarkCellVIew(mark: mark, selectedMark: $rawModel.mark)
-                    }
+            VStack(spacing: 7) {
+                HStack {
+                    AddEggMarkCellVIew(mark: .work, selectedMark: $rawModel.mark)
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                HStack(spacing: 7) {
+                    AddEggMarkCellVIew(mark: .shopping, selectedMark: $rawModel.mark)
+                    AddEggMarkCellVIew(mark: .gift, selectedMark: $rawModel.mark)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
     }
     

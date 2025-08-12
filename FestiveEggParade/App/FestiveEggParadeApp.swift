@@ -9,6 +9,11 @@ struct FestiveEggParadeApp: App {
         WindowGroup {
             if isShowMainFlow {
                 TabBarView()
+                    .onAppear {
+                        Task {
+                            await EggReminderService.shared.requestPermission()
+                        }
+                    }
             } else {
                 SplashScreen(isShowMainFlow: $isShowMainFlow)
             }

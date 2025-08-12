@@ -37,7 +37,8 @@ struct InspirationView: View {
             }
             .setLoader(isLoading: viewModel.isLoading)
             .onAppear {
-                isShowTabBar = true 
+                isShowTabBar = true
+                Task { await viewModel.load() }
             }
         }
         .navigationViewStyle(.stack)
