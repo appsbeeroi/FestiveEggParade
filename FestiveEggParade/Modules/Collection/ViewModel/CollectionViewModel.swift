@@ -50,7 +50,6 @@ final class CollectionViewModel: ObservableObject {
     func remove(_ model: EggModel) {
         Task { @RealmActor [weak self] in
             guard let self,
-                  let index = eggs.firstIndex(where: { $0.id == model.id }),
                   let imagePath = await imageStorage.saveImage(model.image, for: model.id) else { return }
             
             let object = EggObject(from: model, and: imagePath)
@@ -58,7 +57,8 @@ final class CollectionViewModel: ObservableObject {
             await realmService.deleteObject(EggObject.self, withPrimaryKey: object.id)
             await imageStorage.deleteImage(for: object.id)
             
-            let _ = await MainActor.run {
+            await MainActor.run {
+                guard let index = self.eggs.firstIndex(where: { $0.id == model.id }) else { return }
                 self.eggs.remove(at: index)
             }
         }

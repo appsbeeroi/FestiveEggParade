@@ -29,7 +29,7 @@ struct EggModel: Identifiable, Equatable {
 }
 
 struct RawEggModel {
-    var id = UUID()
+    var id: UUID
     var title: String?
     var date: Date?
     var source: String?
@@ -37,10 +37,12 @@ struct RawEggModel {
     var mark: EggMark?
     
     var isAvailable: Bool {
-        title != nil && date != nil && source != nil && mark != nil
+        title != nil && date != nil && source != nil && mark != nil && image != nil
     }
     
-    init() {}
+    init() {
+        self.id = UUID()
+    }
     
     init(from model: EggModel) {
         self.id = model.id

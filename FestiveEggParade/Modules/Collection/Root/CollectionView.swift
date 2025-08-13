@@ -73,6 +73,7 @@ struct CollectionView: View {
                 }
                 .padding(.horizontal, 35)
             }
+            .highPriorityGesture(DragGesture(minimumDistance: 30))
         }
     }
     

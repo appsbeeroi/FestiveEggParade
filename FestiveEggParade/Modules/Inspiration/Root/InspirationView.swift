@@ -94,10 +94,11 @@ struct InspirationView: View {
                         }
                     }
                 }
-            }
+            }            
             .padding(.top, 10)
             .padding(.bottom, 100)
         }
+        .highPriorityGesture(DragGesture(minimumDistance: 30))
     }
 }
 

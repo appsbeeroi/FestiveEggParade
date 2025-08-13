@@ -15,15 +15,19 @@ struct TabBarView: View {
                     TabView(selection: $selection) {
                         InspirationView(isShowTabBar: $isSHowTabBar)
                             .tag(TabViewState.inspiration)
+                            .gesture(DragGesture())
                         
                         CollectionView(isShowTabBar: $isSHowTabBar)
                             .tag(TabViewState.collection)
+                            .gesture(DragGesture())
                         
                         EruditeView()
                             .tag(TabViewState.erudite)
+                            .gesture(DragGesture())
                         
                         SettingsView()
                             .tag(TabViewState.settings)
+                            .gesture(DragGesture())
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     .background(Color.clear)

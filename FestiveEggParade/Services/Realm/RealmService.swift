@@ -32,6 +32,10 @@ final class RealmService {
             await Task.yield()
         }
         
+        if !UserDefaults.standard.bool(forKey: "defaultTechnologiesDidLoaded") {
+            await initDefaultTechnologies()
+        }
+        
         guard let realm else { return [] }
         let objects = realm.objects(T.self)
         
@@ -65,11 +69,10 @@ final class RealmService {
         }
     }
     
-//    @RealmActor
+    @RealmActor
     private func initRealm() async {
         do {
             realm = try await Realm(configuration: .defaultConfiguration, actor: RealmActor.shared)
-            await initDefaultTechnologies()
         } catch {
             print(error.localizedDescription)
         }

@@ -178,6 +178,7 @@ struct AddEggCollectionView: View {
                 .scaledToFit()
                 .frame(width: 156, height: 72)
         }
+        .disabled(!rawModel.isAvailable)
     }
 }
 

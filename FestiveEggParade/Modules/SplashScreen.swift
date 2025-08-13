@@ -9,7 +9,8 @@ struct SplashScreen: View {
     var body: some View {
         ZStack {
             Image(.Images.background)
-                .expandToFill()
+                .resizable()
+                .scaledToFill()
             
             VStack(spacing: 12) {
                 Image(.Images.goldEgg)
@@ -30,6 +31,7 @@ struct SplashScreen: View {
                 .animation(.smooth(duration: 3), value: isStartAnimating)
             }
         }
+        .ignoresSafeArea()
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 isStartAnimating = true
