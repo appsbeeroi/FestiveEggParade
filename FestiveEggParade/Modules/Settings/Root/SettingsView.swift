@@ -8,6 +8,8 @@ struct SettingsView: View {
     @State private var isNotificationEnable = false
     @State private var isShowNotificationAlert = false
     
+    @Binding var isShowTabBar: Bool 
+    
     var body: some View {
         ZStack {
             Image(.Images.background)
@@ -18,7 +20,12 @@ struct SettingsView: View {
                 
                 VStack(spacing: 0) {
                     ForEach(SettingsCellType.allCases) { type in
-                        SettingCellView(type: type, isNotificationEnable: $isNotificationEnable)
+                        SettingCellView(type: type, isNotificationEnable: $isNotificationEnable) {
+                            if type != .notifications {
+                                isShowTabBar = false
+                                selectedDocumentType = type
+                            }
+                        }
                     }
                 }
                 .cornerRadius(18)
@@ -31,7 +38,9 @@ struct SettingsView: View {
                let url = URL(string: selectedDocumentType.link) {
                 WebView(url: url) {
                     self.selectedDocumentType = nil
+                    self.isShowTabBar = true
                 }
+                .ignoresSafeArea(edges: [.bottom])
             }
         }
         .animation(.default, value: selectedDocumentType)
@@ -85,7 +94,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(isShowTabBar: .constant(false))
 }
 
 

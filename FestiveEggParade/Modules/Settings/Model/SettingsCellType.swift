@@ -20,9 +20,9 @@ enum SettingsCellType: Identifiable, CaseIterable {
     var link: String {
         switch self {
             case .privacy:
-                ""
+                "https://sites.google.com/view/festiveeggparade/privacy-policy"
             case .about:
-                ""
+                "https://sites.google.com/view/festiveeggparade/home"
             default:
                 ""
         }

@@ -25,7 +25,7 @@ struct TabBarView: View {
                             .tag(TabViewState.erudite)
                             .gesture(DragGesture())
                         
-                        SettingsView()
+                        SettingsView(isShowTabBar: $isSHowTabBar)
                             .tag(TabViewState.settings)
                             .gesture(DragGesture())
                     }
