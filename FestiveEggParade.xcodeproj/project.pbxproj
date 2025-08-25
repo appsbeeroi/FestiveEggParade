@@ -8,7 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		7E4905A02E48FB8E00EA63A2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7E49059F2E48FB8E00EA63A2 /* RealmSwift */; };
+		7ED982B62E5C382A0054BD51 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7E49059F2E48FB8E00EA63A2 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7ED982B72E5C382A0054BD51 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7ED982B62E5C382A0054BD51 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E55072E2E4657FD00AFB172 /* FestiveEggParade.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FestiveEggParade.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +88,7 @@
 				7E55072A2E4657FD00AFB172 /* Sources */,
 				7E55072B2E4657FD00AFB172 /* Frameworks */,
 				7E55072C2E4657FD00AFB172 /* Resources */,
+				7ED982B72E5C382A0054BD51 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
